@@ -1,0 +1,54 @@
+﻿@model NewsEditVM
+
+@{
+    ViewData["Title"] = "Update News";
+    var news = Model;
+    List<SelectListItem> authors = ViewData[Constants.Authors] as List<SelectListItem> ?? new();
+}
+<section>
+    <div class="container-fluid h-custom">
+        <div class="col-md-8 col-lg-6 col-xl-8 offset-xl-1" style="margin-left:auto;margin-right:auto">
+            <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="ImagePath" />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-outline mb-4">
+                    <label class="form-label" asp-for="Title"></label>
+                    <input type="text" class="form-control" asp-for="Title" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <label class="form-label" asp-for="Description"></label>
+                    <textarea class="form-control" asp-for="Description" rows="4"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <label class="form-label" asp-for="Image"></label>
+                    <input type="file" class="form-control" asp-for="Image" />
+                    <span asp-validation-for="Image" class="text-danger pt-2"></span>
+                </div>
+
+                <div class="form-outline mb-4">
+                    <label class="form-label" asp-for="PublicationDate"></label>
+                    <input class="form-control" asp-for="PublicationDate" />
+                </div>
+
+                <div class="form-outline mb-4">
+                    <label class="form-label" asp-for="AuthorId"></label>
+                    <select class="form-select" asp-for="AuthorId" asp-items="@authors"></select>
+                    <span asp-validation-for="AuthorId" class="text-danger pt-2"></span>
+                </div>
+
+                <div class="text-center">
+                    <button type="submit" class="btn btn-outline-primary col-4 mb-4 text-center ">Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,20 @@
+﻿@model NewsDetailsVM
+
+@{
+    ViewData["Title"] = "News Details";
+    var news = Model;
+}
+
+<div class="card my-3 bg-light col-12">
+    <figure class="text-center">
+        <img class="card-img-top"  src="@($"/{news.ImagePath}")">
+    </figure>
+    <div class="card-body">
+        <h5 class="card-title">@news.Title</h5>
+        <p class="card-text">@news.Description</p>
+        <p class="card-text row">
+            <small class="text-muted col-6">@news.PublicationDate</small>
+            <small class="text-muted text-end col-6">Written By: @news.AuthorName</small>
+        </p>
+    </div>
+</div>

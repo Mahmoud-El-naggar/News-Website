@@ -1,0 +1,28 @@
+﻿@model AuthorsAddVM
+
+@{
+    ViewData["Title"] = "Add Author";
+    var author = Model;
+}
+
+<form asp-action="Add" method="post">
+
+    <div class="form-outline mb-4">
+
+        <label class="form-label" asp-for="Name"></label>
+        <input type="text" class="form-control" asp-for="Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    
+    </div>
+
+    <div class="text-center">
+
+        <button type="submit" class="btn btn-outline-success mb-4 text-center col-6 ">Add</button>
+    
+    </div>
+
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

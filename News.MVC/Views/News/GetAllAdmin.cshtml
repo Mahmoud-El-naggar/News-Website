@@ -1,0 +1,36 @@
+﻿@model List<NewsDisplayVM>
+
+@{
+    ViewData["Title"] = "All News Admin";
+    
+}
+
+<div class="text-center mb-3 row justify-content-center">
+    <a asp-controller="Authors" asp-action="GetAll" class="btn btn-outline-primary col-3 me-3">Authors</a>
+    <a asp-action="Add" class="btn btn-outline-success col-3 ms-3" >Add News</a>
+</div>
+
+<table class="table table-hover ">
+    <thead>
+        <tr class="align-start text-center">
+            <th class="col-6">Title</th>
+            <th class="col-6">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var news in Model)
+        {
+            <tr>
+                <td class="text-center">
+                    <p class="text-muted mb-0">@news.Title</p>
+                </td>
+                <td class="text-center">
+                    <button class="d-inline me-2 border-0 bg-transparent "><a asp-action="Edit" asp-route-id="@news.Id" class="btn btn-outline-primary border-0 fs-5"><i class="bi bi-pencil-square"></i></a> </button>
+                    <form asp-action="Delete" asp-route-id="@news.Id" method="post" class="d-inline">
+                        <button type="submit" class="btn btn-outline-danger border-0 fs-5" onclick=" return confirm('Delete @news.Title ?')"><i class="bi bi-journal-x"></i></button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

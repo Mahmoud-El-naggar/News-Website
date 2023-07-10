@@ -1,0 +1,32 @@
+﻿@model List<NewsDisplayVM>
+
+@{
+    ViewData["Title"] = "All News";
+    var news = Model;
+}
+
+<div class="container">
+    <div class="row">
+        @if(news.Count <= 0)
+        {
+            <a asp-action="Login" asp-controller="Admin" class="btn btn-outline-primary my-5">No News Available Yet!  Login To Add News </a>
+        }
+        @foreach (var item in news)
+        {
+            
+            <div class="card-deck bg-light col-sm-8 col-md-5 my-3 m-md-4">
+                <div class="card border-0">
+                    <a asp-action="Details" asp-route-id="@item.Id"> <img class="card-img" src="@($"/{item.ImagePath}")"></a>
+
+                    <div class="card-Title bg-light" style="height:4em">
+                        <h5 class="card-title"><a asp-action="Details" asp-route-id="@item.Id" class="text-decoration-none text-black ">@item.Title</a></h5>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+
